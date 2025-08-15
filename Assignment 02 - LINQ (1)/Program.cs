@@ -96,11 +96,25 @@ namespace Assignment_02___LINQ__1_
 
             #region 2. Return a list of customers and how many orders each has.
 
-            var result = customers.Select(c => new { c.CustomerName, OrderCount = c.Orders.Length });
+            //var result = customers.Select(c => new { c.CustomerName, OrderCount = c.Orders.Length });
+
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine($"{item.CustomerName} - {item.OrderCount} orders");
+            //}
+            #endregion
+
+
+
+            #region 3. Return a list of categories and how many products each has
+
+            var result = products
+                .GroupBy(p => p.Category)
+                .Select(g => new { Category = g.Key, ProductCount = g.Count() });
 
             foreach (var item in result)
             {
-                Console.WriteLine($"{item.CustomerName} - {item.OrderCount} orders");
+                Console.WriteLine($"{item.Category} - {item.ProductCount} products");
             }
             #endregion
 
