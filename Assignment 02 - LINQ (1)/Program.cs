@@ -203,14 +203,41 @@ namespace Assignment_02___LINQ__1_
             #endregion
 
             #region 12. Get the most expensive price among each category's products.
-             
-            var result = products
-                .GroupBy(p => p.Category)
-                .Select(g => new { Category = g.Key, MostExpensivePrice = g.Max(p => p.UnitPrice) });
+
+            //  var mostExpensiveByCategory = products
+            //.GroupBy(p => p.Category)
+            //.Select(g => new
+            //{
+            //    Category = g.Key,
+            //    MostExpensiveProducts = g.Where(p => p.UnitPrice == g.Max(x => x.UnitPrice))
+            //});
+
+            //foreach (var category in mostExpensiveByCategory)
+            //{
+            //    Console.WriteLine($"Category: {category.Category}");
+            //    foreach (var product in category.MostExpensiveProducts)
+            //    {
+            //        Console.WriteLine($"   {product.ProductName} - {product.UnitPrice}");
+            //    }
+            //}
+            #endregion
+
+            #region 13. Get the products with the most expensive price in each category.
+         var result = products.
+            GroupBy(p => p.Category)
+            .Select(g => new
+            {
+                Category = g.Key,
+                MostExpensiveProduct = g.OrderByDescending(p => p.UnitPrice).FirstOrDefault()
+            });
             foreach (var item in result)
             {
-                Console.WriteLine($"{item.Category} - Most Expensive Price: {item.MostExpensivePrice:C}");
+                if (item.MostExpensiveProduct != null)
+                {
+                    Console.WriteLine($"{item.Category} - {item.MostExpensiveProduct.ProductName} - {item.MostExpensiveProduct.UnitPrice:C}");
+                }
             }
+
             #endregion
 
 
