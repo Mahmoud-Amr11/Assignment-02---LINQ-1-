@@ -1,11 +1,31 @@
 ﻿using ASSLINQ;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net.WebSockets;
 using System.Runtime.Intrinsics.X86;
+using System.Text.RegularExpressions;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Assignment_02___LINQ__1_
 {
+
+    class AnagramComparer : IEqualityComparer<string>
+    {
+        public bool Equals(string x, string y)
+        {
+            if (x == null || y == null) return false;
+            return String.Concat(x.Trim().OrderBy(c => c))
+                   .Equals(String.Concat(y.Trim().OrderBy(c => c)), StringComparison.OrdinalIgnoreCase);
+        }
+
+        public int GetHashCode(string obj)
+        {
+            if (obj == null) return 0;
+            return String.Concat(obj.Trim().OrderBy(c => c))
+                   .ToUpperInvariant()
+                   .GetHashCode();
+        }
+    }
     internal class Program
     {
         static void Main(string[] args)
@@ -490,17 +510,29 @@ namespace Assignment_02___LINQ__1_
 
             #region 2-Uses group by to partition a list of words by their first letter. Use dictionary_english.txt for Input
 
-            var result = words
-            .GroupBy(w => char.ToUpper(w[0])) 
-            .ToList();
+            //var result = words
+            //.GroupBy(w => char.ToUpper(w[0])) 
+            //.ToList();
 
-            foreach (var group in result)
+            //foreach (var group in result)
+            //{
+            //    Console.WriteLine($"Words starting with '{group.Key}':");
+            //    foreach (var word in group)
+            //    {
+            //        Console.WriteLine($"  {word}");
+            //    }
+            //}
+            #endregion
+
+            #region 3-Consider this Array as an Input   Use Group By with a custom comparer that matches words that are consists of the same Characters Together
+            String[] Arr = { "from", "salt", "earn", " last", "near", "form" };
+
+
+            var grouped = Arr.GroupBy(w => w, new AnagramComparer());
+
+            foreach (var group in grouped)
             {
-                Console.WriteLine($"Words starting with '{group.Key}':");
-                foreach (var word in group)
-                {
-                    Console.WriteLine($"  {word}");
-                }
+                Console.WriteLine(string.Join(", ", group));
             }
             #endregion
 
