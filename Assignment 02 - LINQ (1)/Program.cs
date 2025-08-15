@@ -301,19 +301,38 @@ namespace Assignment_02___LINQ__1_
 
             #region 4. Create one sequence that contains the first letters of product names that are not also first letters of customer names.
 
-            var result = products
-            .Select(p => char.ToUpper(p.ProductName[0]))  
-            .Distinct()
-            .Except(customers
-                .Select(c => char.ToUpper(c.CustomerName[0]))
-                .Distinct());
+            //var result = products
+            //.Select(p => char.ToUpper(p.ProductName[0]))  
+            //.Distinct()
+            //.Except(customers
+            //    .Select(c => char.ToUpper(c.CustomerName[0]))
+            //    .Distinct());
 
 
-            foreach (var letter in result)
-                Console.WriteLine(letter);
+            //foreach (var letter in result)
+            //    Console.WriteLine(letter);
             #endregion
 
-                #endregion
+
+            #region 5. Create one sequence that contains the last Three Characters in each name of all customers and products, including any duplicates
+
+            var result = products
+            .Select(p => p.ProductName.Length >= 3
+                ? p.ProductName.Substring(p.ProductName.Length - 3)
+                : p.ProductName)
+            .Concat(customers
+            .Select(c => c.CustomerName.Length >= 3
+                ? c.CustomerName.Substring(c.CustomerName.Length - 3)
+                : c.CustomerName));
+
+
+            foreach (var item in result)
+            {
+                Console.WriteLine(item);
+            }
+            #endregion
+
+            #endregion
 
 
 
