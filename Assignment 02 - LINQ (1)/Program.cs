@@ -149,9 +149,25 @@ namespace Assignment_02___LINQ__1_
 
             #region 8. Get the average length of the words in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
 
-             var reselt = words.Average(word => word.Length);
-            Console.WriteLine($"Average length of the words = {reselt}");
+            // var reselt = words.Average(word => word.Length);
+            //Console.WriteLine($"Average length of the words = {reselt}");
             #endregion
+
+
+            #region 9. Get the total units in stock for each product category.
+
+            var result = products
+                .GroupBy(p => p.Category)
+                .Select(g => new { Category = g.Key, TotalUnitsInStock = g.Sum(p => p.UnitsInStock) });
+
+            foreach (var item in result)
+            {
+                Console.WriteLine($"{item.Category} - Total Units in Stock: {item.TotalUnitsInStock}");
+            }
+
+            #endregion
+
+
             #endregion
 
 
