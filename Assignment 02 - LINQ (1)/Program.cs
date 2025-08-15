@@ -316,20 +316,40 @@ namespace Assignment_02___LINQ__1_
 
             #region 5. Create one sequence that contains the last Three Characters in each name of all customers and products, including any duplicates
 
-            var result = products
-            .Select(p => p.ProductName.Length >= 3
-                ? p.ProductName.Substring(p.ProductName.Length - 3)
-                : p.ProductName)
-            .Concat(customers
-            .Select(c => c.CustomerName.Length >= 3
-                ? c.CustomerName.Substring(c.CustomerName.Length - 3)
-                : c.CustomerName));
+            //var result = products
+            //.Select(p => p.ProductName.Length >= 3
+            //    ? p.ProductName.Substring(p.ProductName.Length - 3)
+            //    : p.ProductName)
+            //.Concat(customers
+            //.Select(c => c.CustomerName.Length >= 3
+            //    ? c.CustomerName.Substring(c.CustomerName.Length - 3)
+            //    : c.CustomerName));
 
 
-            foreach (var item in result)
-            {
-                Console.WriteLine(item);
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            #endregion
+
+            #endregion
+
+
+
+
+            #region LINQ - Partitioning Operators
+
+            #region 1. Get the first 3 orders from customers in Washington
+
+            var result = customers
+                .Where(c => c.Region == "WA")       
+                .SelectMany(c => c.Orders)          
+                .Take(3);
+            foreach (var order in result)
+                {
+                Console.WriteLine(order);
             }
+
             #endregion
 
             #endregion
