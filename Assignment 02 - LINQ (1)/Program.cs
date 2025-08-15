@@ -8,7 +8,7 @@ namespace Assignment_02___LINQ__1_
         {
             var products = ListGenerators.ProductList;
             var customers = ListGenerators.CustomerList;
-
+            string[] words = File.ReadAllLines("dictionary_english.txt");
 
             #region LINQ - Restriction Operators
             #region 1. Find all products that are out of stock.
@@ -120,10 +120,17 @@ namespace Assignment_02___LINQ__1_
 
             #region 4. Get the total of the numbers in an array.
 
-            int[] Arr = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            //int[] Arr = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
 
-            var result = Arr.Sum();
-            Console.WriteLine(result);
+            //var result = Arr.Sum();
+            //Console.WriteLine(result);
+            #endregion
+
+            #region 5. Get the total number of characters of all words in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
+
+            var result= words.Sum(word => word.Length);
+
+            Console.WriteLine($"Total number of characters = {result}");
             #endregion
 
 
