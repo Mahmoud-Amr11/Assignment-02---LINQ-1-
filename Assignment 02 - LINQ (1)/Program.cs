@@ -53,10 +53,19 @@ namespace Assignment_02___LINQ__1_
             #region LINQ - Element Operators
 
             #region 1. Get first Product out of Stock 
-            
-            var result = products.FirstOrDefault(p => p.UnitsInStock == 0);
-            Console.WriteLine(result.ToString());
+
+            //var result = products.FirstOrDefault(p => p.UnitsInStock == 0);
+            //Console.WriteLine(result.ToString());
             #endregion
+
+
+            #region 2. Return the first product whose Price > 1000, unless there is no match, in which case null is returned
+            var result = products.FirstOrDefault(p => p.UnitPrice > 1000,null);
+            Console.WriteLine(result);
+            #endregion
+
+
+
             #endregion
 
 
