@@ -525,19 +525,32 @@ namespace Assignment_02___LINQ__1_
             #endregion
 
             #region 3-Consider this Array as an Input   Use Group By with a custom comparer that matches words that are consists of the same Characters Together
-            String[] Arr = { "from", "salt", "earn", " last", "near", "form" };
+            //String[] Arr = { "from", "salt", "earn", " last", "near", "form" };
 
 
-            var grouped = Arr.GroupBy(w => w, new AnagramComparer());
+            //var grouped = Arr.GroupBy(w => w, new AnagramComparer());
 
-            foreach (var group in grouped)
+            //foreach (var group in grouped)
+            //{
+            //    Console.WriteLine(string.Join(", ", group));
+            //}
+            #endregion
+
+            #endregion
+
+
+            #region LINQ – Transformation Operators
+
+            #region 1. Return a sequence of just the names of a list of products.
+
+            var productNames = products.Select(p => p.ProductName);
+
+            foreach (var name in productNames)
             {
-                Console.WriteLine(string.Join(", ", group));
+                Console.WriteLine(name);
             }
             #endregion
-
             #endregion
-
 
 
 
