@@ -353,17 +353,30 @@ namespace Assignment_02___LINQ__1_
             #endregion
 
             #region 2. Get all but the first 2 orders from customers in Washington.
-            var result = customers
-            .Where(c => c.Region == "WA")   
-            .SelectMany(c => c.Orders)      
-            .Skip(2)                        
-            .ToList();
+            //var result = customers
+            //.Where(c => c.Region == "WA")   
+            //.SelectMany(c => c.Orders)      
+            //.Skip(2)                        
+            //.ToList();
 
-            foreach (var order in result)
+            //foreach (var order in result)
+            //{
+            //    Console.WriteLine(order);
+            //}
+
+
+            #endregion
+
+            #region 3. Return elements starting from the beginning of the array until a number is hit that is less than its position in the array.
+            int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            var result = numbers
+            .TakeWhile((n, index) => n >= index) 
+            .ToArray();
+
+            foreach (var number in result)
             {
-                Console.WriteLine(order);
+                Console.WriteLine(number);
             }
-
 
             #endregion
 
