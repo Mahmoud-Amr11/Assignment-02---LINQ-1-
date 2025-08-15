@@ -182,24 +182,35 @@ namespace Assignment_02___LINQ__1_
             #endregion
 
             #region 11. Get the products with the cheapest price in each category (Use Let)
-            var cheapestProductsByCategory =
-            from p in products
-            group p by p.Category into g
-            let minPrice = g.Min(x => x.UnitPrice)
-            from prod in g
-            where prod.UnitPrice == minPrice
-            select new
-            {
-                Category = g.Key,
-                ProductName = prod.ProductName,
-                Price = prod.UnitPrice
-            };
+            //var cheapestProductsByCategory =
+            //from p in products
+            //group p by p.Category into g
+            //let minPrice = g.Min(x => x.UnitPrice)
+            //from prod in g
+            //where prod.UnitPrice == minPrice
+            //select new
+            //{
+            //    Category = g.Key,
+            //    ProductName = prod.ProductName,
+            //    Price = prod.UnitPrice
+            //};
 
-            foreach (var item in cheapestProductsByCategory)
+            //foreach (var item in cheapestProductsByCategory)
+            //{
+            //    Console.WriteLine($"{item.Category} - {item.ProductName} - {item.Price}");
+            //}
+
+            #endregion
+
+            #region 12. Get the most expensive price among each category's products.
+             
+            var result = products
+                .GroupBy(p => p.Category)
+                .Select(g => new { Category = g.Key, MostExpensivePrice = g.Max(p => p.UnitPrice) });
+            foreach (var item in result)
             {
-                Console.WriteLine($"{item.Category} - {item.ProductName} - {item.Price}");
+                Console.WriteLine($"{item.Category} - Most Expensive Price: {item.MostExpensivePrice:C}");
             }
-
             #endregion
 
 
