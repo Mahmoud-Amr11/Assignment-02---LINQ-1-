@@ -424,10 +424,30 @@ namespace Assignment_02___LINQ__1_
 
 
             #region 2. Return a grouped a list of products only for categories that have at least one product that is out of stock.
+            //var result = products
+            //.GroupBy(p => p.Category)                      
+            //.Where(g => g.Any(p => p.UnitsInStock == 0))    
+            //.ToList();
+
+
+            //foreach (var group in result)
+            //{
+            //    Console.WriteLine($"Category: {group.Key}");
+            //    foreach (var product in group)
+            //    {
+            //        Console.WriteLine($"  {product.ProductName} - Stock: {product.UnitsInStock}");
+            //    }
+            //}
+
+            #endregion
+
+
+            #region 3. Return a grouped a list of products only for categories that have all of their products in stock
             var result = products
-            .GroupBy(p => p.Category)                      
-            .Where(g => g.Any(p => p.UnitsInStock == 0))    
+            .GroupBy(p => p.Category)                       
+            .Where(g => g.All(p => p.UnitsInStock > 0))      
             .ToList();
+
 
 
             foreach (var group in result)
@@ -438,7 +458,6 @@ namespace Assignment_02___LINQ__1_
                     Console.WriteLine($"  {product.ProductName} - Stock: {product.UnitsInStock}");
                 }
             }
-
             #endregion
 
             #endregion
