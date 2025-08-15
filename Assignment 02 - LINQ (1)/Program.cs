@@ -415,11 +415,32 @@ namespace Assignment_02___LINQ__1_
             #region LINQ - Quantifiers
 
             #region 1. Determine if any of the words in dictionary_english.txt (Read dictionary_english.txt into Array of String First) contain the substring 'ei'.
-            bool hasEi = words.Any(w => w.Contains("ei", StringComparison.OrdinalIgnoreCase));
+            //bool hasEi = words.Any(w => w.Contains("ei", StringComparison.OrdinalIgnoreCase));
 
-            Console.WriteLine(hasEi  ? "There is at least one word containing 'ei'."  : "No words contain 'ei'.");
+            //Console.WriteLine(hasEi  ? "There is at least one word containing 'ei'."  : "No words contain 'ei'.");
 
             #endregion
+
+
+
+            #region 2. Return a grouped a list of products only for categories that have at least one product that is out of stock.
+            var result = products
+            .GroupBy(p => p.Category)                      
+            .Where(g => g.Any(p => p.UnitsInStock == 0))    
+            .ToList();
+
+
+            foreach (var group in result)
+            {
+                Console.WriteLine($"Category: {group.Key}");
+                foreach (var product in group)
+                {
+                    Console.WriteLine($"  {product.ProductName} - Stock: {product.UnitsInStock}");
+                }
+            }
+
+            #endregion
+
             #endregion
 
 
