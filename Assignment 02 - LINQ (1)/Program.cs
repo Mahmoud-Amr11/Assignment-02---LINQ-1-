@@ -81,9 +81,6 @@ namespace Assignment_02___LINQ__1_
             #endregion
 
 
-
-
-
             #region LINQ - Aggregate Operators
 
             #region 1. Uses Count to get the number of odd numbers in the array
@@ -243,20 +240,36 @@ namespace Assignment_02___LINQ__1_
 
             #region 14. Get the average price of each category's products.
 
-            var result = products
-                .GroupBy(p => p.Category)
-                .Select(g => new
-                {
-                    Category = g.Key,
-                    AveragePrice = g.Average(p => p.UnitPrice)
-                });
-            foreach (var item in result)
-            {
-                Console.WriteLine($"{item.Category} - Average Price: {item.AveragePrice:C}");
-            }
+            //var result = products
+            //    .GroupBy(p => p.Category)
+            //    .Select(g => new
+            //    {
+            //        Category = g.Key,
+            //        AveragePrice = g.Average(p => p.UnitPrice)
+            //    });
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine($"{item.Category} - Average Price: {item.AveragePrice:C}");
+            //}
             #endregion
 
 
+            #endregion
+
+
+
+            #region LINQ - Set Operators
+
+            #region 1. Find the unique Category names from Product List
+            
+            var resutl = products
+                .Select(p => p.Category)
+                .Distinct();
+            foreach (var category in resutl)
+                {
+                Console.WriteLine(category);
+            }
+            #endregion
             #endregion
 
 
