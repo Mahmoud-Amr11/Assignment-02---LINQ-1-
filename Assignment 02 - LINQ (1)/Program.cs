@@ -341,14 +341,29 @@ namespace Assignment_02___LINQ__1_
 
             #region 1. Get the first 3 orders from customers in Washington
 
+            //var result = customers
+            //    .Where(c => c.Region == "WA")       
+            //    .SelectMany(c => c.Orders)          
+            //    .Take(3);
+            //foreach (var order in result)
+            //    {
+            //    Console.WriteLine(order);
+            //}
+
+            #endregion
+
+            #region 2. Get all but the first 2 orders from customers in Washington.
             var result = customers
-                .Where(c => c.Region == "WA")       
-                .SelectMany(c => c.Orders)          
-                .Take(3);
+            .Where(c => c.Region == "WA")   
+            .SelectMany(c => c.Orders)      
+            .Skip(2)                        
+            .ToList();
+
             foreach (var order in result)
-                {
+            {
                 Console.WriteLine(order);
             }
+
 
             #endregion
 
