@@ -1,4 +1,5 @@
 ﻿using ASSLINQ;
+using System.Collections.Generic;
 using System.Net.WebSockets;
 
 namespace Assignment_02___LINQ__1_
@@ -443,23 +444,45 @@ namespace Assignment_02___LINQ__1_
 
 
             #region 3. Return a grouped a list of products only for categories that have all of their products in stock
-            var result = products
-            .GroupBy(p => p.Category)                       
-            .Where(g => g.All(p => p.UnitsInStock > 0))      
+            //var result = products
+            //.GroupBy(p => p.Category)                       
+            //.Where(g => g.All(p => p.UnitsInStock > 0))      
+            //.ToList();
+
+
+
+            //foreach (var group in result)
+            //{
+            //    Console.WriteLine($"Category: {group.Key}");
+            //    foreach (var product in group)
+            //    {
+            //        Console.WriteLine($"  {product.ProductName} - Stock: {product.UnitsInStock}");
+            //    }
+            //}
+            #endregion
+
+            #endregion
+
+
+
+            #region LINQ – Grouping Operators
+
+            #region 1-Use group by to partition a list of numbers by their remainder when divided by 5
+            List<int> numbers = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+
+            var result = numbers
+            .GroupBy(n => n % 5)   
             .ToList();
-
-
 
             foreach (var group in result)
             {
-                Console.WriteLine($"Category: {group.Key}");
-                foreach (var product in group)
+                Console.WriteLine($"Remainder {group.Key}:");
+                foreach (var number in group)
                 {
-                    Console.WriteLine($"  {product.ProductName} - Stock: {product.UnitsInStock}");
+                    Console.WriteLine($"  {number}");
                 }
             }
             #endregion
-
             #endregion
 
 
