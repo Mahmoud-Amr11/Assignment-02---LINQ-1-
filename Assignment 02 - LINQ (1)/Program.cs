@@ -156,13 +156,27 @@ namespace Assignment_02___LINQ__1_
 
             #region 9. Get the total units in stock for each product category.
 
+            //var result = products
+            //    .GroupBy(p => p.Category)
+            //    .Select(g => new { Category = g.Key, TotalUnitsInStock = g.Sum(p => p.UnitsInStock) });
+
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine($"{item.Category} - Total Units in Stock: {item.TotalUnitsInStock}");
+            //}
+
+            #endregion
+
+
+            #region 10. Get the cheapest price among each category's products
+
             var result = products
                 .GroupBy(p => p.Category)
-                .Select(g => new { Category = g.Key, TotalUnitsInStock = g.Sum(p => p.UnitsInStock) });
+                .Select(g => new { Category = g.Key, CheapestPrice = g.Min(p => p.UnitPrice) });
 
             foreach (var item in result)
             {
-                Console.WriteLine($"{item.Category} - Total Units in Stock: {item.TotalUnitsInStock}");
+                Console.WriteLine($"{item.Category} - Cheapest Price: {item.CheapestPrice:C}");
             }
 
             #endregion
