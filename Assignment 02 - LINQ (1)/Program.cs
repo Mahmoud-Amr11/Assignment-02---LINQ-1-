@@ -543,13 +543,33 @@ namespace Assignment_02___LINQ__1_
 
             #region 1. Return a sequence of just the names of a list of products.
 
-            var productNames = products.Select(p => p.ProductName);
+            //var productNames = products.Select(p => p.ProductName);
 
-            foreach (var name in productNames)
+            //foreach (var name in productNames)
+            //{
+            //    Console.WriteLine(name);
+            //}
+            #endregion
+
+            #region 2. Produce a sequence of the uppercase and lowercase versions of each word in the original array (Anonymous Types).
+
+            String[] _words = { "aPPLE", "BlUeBeRrY", "cHeRry" };
+
+
+            var result = _words.Select(w => new
             {
-                Console.WriteLine(name);
+                Upper = w.ToUpper(),
+                Lower = w.ToLower()
+            });
+
+            foreach (var item in result)
+            {
+                Console.WriteLine($"Uppercase: {item.Upper}, Lowercase: {item.Lower}");
             }
             #endregion
+
+
+
             #endregion
 
 
