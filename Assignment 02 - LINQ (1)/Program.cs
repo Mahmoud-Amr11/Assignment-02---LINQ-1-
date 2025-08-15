@@ -134,9 +134,15 @@ namespace Assignment_02___LINQ__1_
             #endregion
 
             #region 6. Get the length of the shortest word in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
-            
-            var result = words.Min(word => word.Length);
-            Console.WriteLine($"Length of the shortest word = {result}");
+
+            //var result = words.Min(word => word.Length);
+            //Console.WriteLine($"Length of the shortest word = {result}");
+            #endregion
+
+            #region 7. Get the length of the longest word in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
+
+            var result = words.Max(w => w.Length);
+            Console.WriteLine($"Length of the longest word = {result}");
             #endregion
 
             #endregion
