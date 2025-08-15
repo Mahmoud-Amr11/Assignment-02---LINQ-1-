@@ -6,7 +6,22 @@ namespace Assignment_02___LINQ__1_
     {
         static void Main(string[] args)
         {
-             
+            var products = ListGenerators.ProductList;
+            var customers = ListGenerators.CustomerList;
+
+
+            #region LINQ - Restriction Operators
+            #region 1. Find all products that are out of stock.
+
+            var result = products.Where(p => p.UnitsInStock == 0);
+            foreach (var product in result)
+            {
+                Console.WriteLine(product.ToString());
+            }
+
+            #endregion
+
+            #endregion
 
 
 
