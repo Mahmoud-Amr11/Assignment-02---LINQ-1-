@@ -1,4 +1,5 @@
 ﻿using ASSLINQ;
+using System.Net.WebSockets;
 
 namespace Assignment_02___LINQ__1_
 {
@@ -141,10 +142,16 @@ namespace Assignment_02___LINQ__1_
 
             #region 7. Get the length of the longest word in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
 
-            var result = words.Max(w => w.Length);
-            Console.WriteLine($"Length of the longest word = {result}");
+            //var result = words.Max(w => w.Length);
+            //Console.WriteLine($"Length of the longest word = {result}");
             #endregion
 
+
+            #region 8. Get the average length of the words in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
+
+             var reselt = words.Average(word => word.Length);
+            Console.WriteLine($"Average length of the words = {reselt}");
+            #endregion
             #endregion
 
 
