@@ -274,17 +274,29 @@ namespace Assignment_02___LINQ__1_
 
             #region 2. Produce a Sequence containing the unique first letter from both product and customer names.
 
-            var result = products
-            .Select(p => p.ProductName[0])           
-            .Union(customers.Select(c => c.CustomerName[0])) 
-            .Distinct();                          
+            //var result = products
+            //.Select(p => p.ProductName[0])           
+            //.Union(customers.Select(c => c.CustomerName[0])) 
+            //.Distinct();                          
+
+            //foreach (var letter in result)
+            //{
+            //    Console.WriteLine(letter);
+            //}
+            #endregion
+
+
+            #region 3. Create one sequence that contains the common first letter from both product and customer names.
+             var result = products
+            .Select(p => p.ProductName[0])          
+            .Intersect(customers.Select(c => c.CustomerName[0]))
+            .Distinct();                               
 
             foreach (var letter in result)
             {
                 Console.WriteLine(letter);
             }
             #endregion
-
 
             #endregion
 
