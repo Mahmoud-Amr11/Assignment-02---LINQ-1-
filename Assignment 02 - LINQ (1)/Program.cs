@@ -223,21 +223,37 @@ namespace Assignment_02___LINQ__1_
             #endregion
 
             #region 13. Get the products with the most expensive price in each category.
-         var result = products.
-            GroupBy(p => p.Category)
-            .Select(g => new
-            {
-                Category = g.Key,
-                MostExpensiveProduct = g.OrderByDescending(p => p.UnitPrice).FirstOrDefault()
-            });
+            //var result = products.
+            //   GroupBy(p => p.Category)
+            //   .Select(g => new
+            //   {
+            //       Category = g.Key,
+            //       MostExpensiveProduct = g.OrderByDescending(p => p.UnitPrice).FirstOrDefault()
+            //   });
+            //   foreach (var item in result)
+            //   {
+            //       if (item.MostExpensiveProduct != null)
+            //       {
+            //           Console.WriteLine($"{item.Category} - {item.MostExpensiveProduct.ProductName} - {item.MostExpensiveProduct.UnitPrice:C}");
+            //       }
+            //   }
+
+            #endregion
+
+
+            #region 14. Get the average price of each category's products.
+
+            var result = products
+                .GroupBy(p => p.Category)
+                .Select(g => new
+                {
+                    Category = g.Key,
+                    AveragePrice = g.Average(p => p.UnitPrice)
+                });
             foreach (var item in result)
             {
-                if (item.MostExpensiveProduct != null)
-                {
-                    Console.WriteLine($"{item.Category} - {item.MostExpensiveProduct.ProductName} - {item.MostExpensiveProduct.UnitPrice:C}");
-                }
+                Console.WriteLine($"{item.Category} - Average Price: {item.AveragePrice:C}");
             }
-
             #endregion
 
 
